@@ -7,6 +7,7 @@ import CircleButton from "../components/CircleButton";
 import IconButton from "../components/IconButton";
 import EmojiPicker from "../components/EmojiPicker";
 import EmojiList from "../components/EmojiList";
+import EmojiSticker from "../components/EmojiSticker";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -46,6 +47,9 @@ export default function HomeScreen() {
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={selectedImage}></Image>
+        {selectedEmoji && (
+          <EmojiSticker stickerSource={selectedEmoji} imageSize={40} />
+        )}
       </View>
 
       {showAppOptions ? (
