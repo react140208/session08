@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, StatusBar } from "react-native";
 import Button from "../components/Button";
 const placeHolderImage = require("./../assets/images/background-image.png");
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import CircleButton from "../components/CircleButton";
 import IconButton from "../components/IconButton";
@@ -44,7 +45,7 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <GestureHandlerRootView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={selectedImage}></Image>
         {selectedEmoji && (
@@ -80,7 +81,8 @@ export default function HomeScreen() {
           onSelect={setSelectedEmoji}
         ></EmojiList>
       </EmojiPicker>
-    </View>
+      <StatusBar />
+    </GestureHandlerRootView>
   );
 }
 
