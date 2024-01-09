@@ -6,11 +6,13 @@ import * as ImagePicker from "expo-image-picker";
 import CircleButton from "../components/CircleButton";
 import IconButton from "../components/IconButton";
 import EmojiPicker from "../components/EmojiPicker";
+import EmojiList from "../components/EmojiList";
 
 export default function HomeScreen() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showAppOptions, setShowAppOptions] = useState(false);
   const [selectedImage, setSelectedImage] = useState(placeHolderImage);
+  const [selectedEmoji, setSelectedEmoji] = useState(null);
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       allowsEditing: true,
@@ -68,10 +70,12 @@ export default function HomeScreen() {
           <Button label="Use this photo"></Button>
         </View>
       )}
-      <EmojiPicker
-        onClose={onModalClose}
-        isVisible={isModalVisible}
-      ></EmojiPicker>
+      <EmojiPicker onClose={onModalClose} isVisible={isModalVisible}>
+        <EmojiList
+          onCloseModal={onModalClose}
+          onSelect={setSelectedEmoji}
+        ></EmojiList>
+      </EmojiPicker>
     </View>
   );
 }
