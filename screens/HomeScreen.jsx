@@ -28,6 +28,10 @@ export default function HomeScreen() {
     }
   };
 
+  const defaultImage = () => {
+    setShowAppOptions(true);
+  };
+
   const onReset = () => {
     setShowAppOptions(false);
   };
@@ -72,7 +76,7 @@ export default function HomeScreen() {
             theme="primary"
             onPress={pickImageAsync}
           ></Button>
-          <Button label="Use this photo"></Button>
+          <Button label="Use this photo" onPress={defaultImage}></Button>
         </View>
       )}
       <EmojiPicker onClose={onModalClose} isVisible={isModalVisible}>
