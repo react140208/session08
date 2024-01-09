@@ -3,8 +3,11 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import Button from "../components/Button";
 const placeHolderImage = require("./../assets/images/background-image.png");
 import * as ImagePicker from "expo-image-picker";
+import CircleButton from "../components/CircleButton";
+import IconButton from "../components/IconButton";
 
 export default function HomeScreen() {
+  const [showAppOptions, setShowAppOptions] = useState(false);
   const [selectedImage, setSelectedImage] = useState(placeHolderImage);
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -15,7 +18,20 @@ export default function HomeScreen() {
       alert("please select an image!");
     } else {
       setSelectedImage({ uri: result.assets[0].uri });
+      setShowAppOptions(true);
     }
+  };
+
+  const onReset = () => {
+    setShowAppOptions(false);
+  };
+
+  const onAddSticker = () => {
+    // we will implement this later
+  };
+
+  const onSaveImageAsync = async () => {
+    // we will implement this later
   };
 
   return (
@@ -23,14 +39,29 @@ export default function HomeScreen() {
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={selectedImage}></Image>
       </View>
-      <View style={styles.footer}>
-        <Button
-          label="Choose a photo"
-          theme="primary"
-          onPress={pickImageAsync}
-        ></Button>
-        <Button label="Use this photo"></Button>
-      </View>
+
+      {showAppOptions ? (
+        <View style={styles.optionsContainer}>
+          <View style={styles.optionsRow}>
+            <IconButton icon="refresh" label="Reset" onPress={onReset} />
+            <CircleButton onPress={onAddSticker} />
+            <IconButton
+              icon="save-alt"
+              label="Save"
+              onPress={onSaveImageAsync}
+            />
+          </View>
+        </View>
+      ) : (
+        <View style={styles.footer}>
+          <Button
+            label="Choose a photo"
+            theme="primary"
+            onPress={pickImageAsync}
+          ></Button>
+          <Button label="Use this photo"></Button>
+        </View>
+      )}
     </View>
   );
 }
@@ -52,5 +83,13 @@ const styles = StyleSheet.create({
   },
   footer: {
     flex: 1 / 3,
+  },
+  optionsContainer: {
+    position: "absolute",
+    bottom: 80,
+  },
+  optionsRow: {
+    alignItems: "center",
+    flexDirection: "row",
   },
 });
