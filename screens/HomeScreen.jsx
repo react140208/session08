@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-import { Button } from "../components/Button";
+import Button from "../components/Button";
 const placeHolderImage = require("./../assets/images/background-image.png");
 
 export default function HomeScreen() {
@@ -10,8 +10,8 @@ export default function HomeScreen() {
         <Image style={styles.image} source={placeHolderImage}></Image>
       </View>
       <View style={styles.footer}>
-        <Button title="Choose a photo"></Button>
-        <Button title="Use this photo"></Button>
+        <Button label="Choose a photo"></Button>
+        <Button label="Use this photo"></Button>
       </View>
     </View>
   );
