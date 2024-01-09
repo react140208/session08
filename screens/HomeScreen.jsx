@@ -5,8 +5,10 @@ const placeHolderImage = require("./../assets/images/background-image.png");
 import * as ImagePicker from "expo-image-picker";
 import CircleButton from "../components/CircleButton";
 import IconButton from "../components/IconButton";
+import EmojiPicker from "../components/EmojiPicker";
 
 export default function HomeScreen() {
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const [showAppOptions, setShowAppOptions] = useState(false);
   const [selectedImage, setSelectedImage] = useState(placeHolderImage);
   const pickImageAsync = async () => {
@@ -27,11 +29,15 @@ export default function HomeScreen() {
   };
 
   const onAddSticker = () => {
-    // we will implement this later
+    setIsModalVisible(true);
   };
 
   const onSaveImageAsync = async () => {
     // we will implement this later
+  };
+
+  const onModalClose = () => {
+    setIsModalVisible(false);
   };
 
   return (
@@ -62,6 +68,10 @@ export default function HomeScreen() {
           <Button label="Use this photo"></Button>
         </View>
       )}
+      <EmojiPicker
+        onClose={onModalClose}
+        isVisible={isModalVisible}
+      ></EmojiPicker>
     </View>
   );
 }
