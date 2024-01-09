@@ -10,7 +10,7 @@ export default function HomeScreen() {
         <Image style={styles.image} source={placeHolderImage}></Image>
       </View>
       <View style={styles.footer}>
-        <Button label="Choose a photo"></Button>
+        <Button label="Choose a photo" theme="primary"></Button>
         <Button label="Use this photo"></Button>
       </View>
     </View>
